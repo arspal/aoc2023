@@ -1,10 +1,7 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"log"
-	"os"
 	"strconv"
 	"strings"
 	"unicode"
@@ -15,12 +12,8 @@ import (
 var numbersAsText = [10]string{"one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"}
 
 func main() {
-	file, err := os.OpenFile("input.txt", os.O_RDONLY, 0644)
-	if err != nil {
-		log.Fatal("failed to open input file, error:", err)
-	}
-
-	scanner := bufio.NewScanner(file)
+	scanner := utils.OpenWithScanner("input.txt")
+	
 	sumP1 := 0
 	sumP2 := 0
 

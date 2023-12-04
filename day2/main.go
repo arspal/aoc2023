@@ -1,9 +1,7 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
 	"strings"
 	"text/scanner"
 
@@ -11,8 +9,7 @@ import (
 )
 
 func main() {
-	file, _ := os.OpenFile("input.txt", os.O_RDONLY, 0644)
-	fileScanner := bufio.NewScanner(file)
+	fileScanner := utils.OpenWithScanner("input.txt")
 	stringReader := strings.NewReader("")
 	var tokensScanner scanner.Scanner
 
