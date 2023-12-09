@@ -2,38 +2,10 @@ package main
 
 import (
 	"fmt"
+	"github.com/arspal/aoc2023/utils"
 	"math"
 	"strconv"
-	"unicode"
-
-	"github.com/arspal/aoc2023/utils"
 )
-
-func parseNumbers(str string) []int {
-	result := make([]int, 0)
-	var num *int
-	for _, char := range str {
-		if unicode.IsDigit(char) {
-			if num == nil {
-				num = new(int)
-			}
-			*num = (*num)*10 + int(char-'0')
-			continue
-		}
-
-		if num != nil {
-			result = append(result, *num)
-			num = nil
-		}
-	}
-
-	if num != nil {
-		result = append(result, *num)
-		num = nil
-	}
-
-	return result
-}
 
 func getWaysToWin(time, distance int) int {
 	result := 0
@@ -53,9 +25,9 @@ func main() {
 	var times, distances []int
 
 	scanner.Scan()
-	times = parseNumbers(scanner.Text())
+	times = utils.ParseNumbers(scanner.Text())
 	scanner.Scan()
-	distances = parseNumbers(scanner.Text())
+	distances = utils.ParseNumbers(scanner.Text())
 
 	p1result := 0
 	p2result := 0

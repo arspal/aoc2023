@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 	"strconv"
+	"unicode"
 )
 
 func ParseInt(str string) int {
@@ -27,4 +28,41 @@ func Open(path string) *os.File {
 func OpenWithScanner(path string) *bufio.Scanner {
 	file := Open(path)
 	return bufio.NewScanner(file)
+}
+
+func ParseNumbers(str string) []int {
+	result := make([]int, 0)
+	var num *int
+	for _, char := range str {
+		if unicode.IsDigit(char) {
+			if num == nil {
+				num = new(int)
+			}
+			*num = (*num)*10 + int(char-'0')
+			continue
+		}
+
+		if num != nil {
+			result = append(result, *num)
+			num = nil
+		}
+	}
+
+	if num != nil {
+		result = append(result, *num)
+		num = nil
+	}
+
+	return result
+}
+
+func ParseNumber(str string) int {
+	result := 0
+	for _, char := range str {
+		if unicode.IsDigit(char) {
+			result = result*10 + int(char-'0')
+		}
+	}
+
+	return result
 }
