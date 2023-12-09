@@ -34,6 +34,7 @@ func ParseNumbers(str string) []int {
 	result := make([]int, 0)
 	var num *int
 	for _, char := range str {
+		// TODO add sign handling
 		if unicode.IsDigit(char) {
 			if num == nil {
 				num = new(int)
